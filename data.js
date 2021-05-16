@@ -26,7 +26,7 @@ const data = {
     },
     {
       _id: "3",
-      name: "Nike Slim Chino",
+      name: "Nike Ferters - Special Edtion",
       category: "Pants",
       image: "/images/p3.jpg",
       price: 120,
@@ -38,7 +38,7 @@ const data = {
     },
     {
       _id: "4",
-      name: "Puma Slim Shirt",
+      name: "Puma Soltiks",
       category: "Pants",
       image: "/images/p4.jpg",
       price: 120,
