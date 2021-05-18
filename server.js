@@ -1,4 +1,6 @@
 import express from "express";
+
+import userRouter from "./routers/user.js";
 import data from "./data.js";
 
 const app = express();
@@ -22,3 +24,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("Served at http://localhost:8080");
 });
+
+app.use("/api/v1/users", userRouter);
