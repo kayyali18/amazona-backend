@@ -1,6 +1,7 @@
 import express from "express";
 
 import userRouter from "./routers/user.js";
+import productRouter from "./routers/product.js";
 import data from "./data.js";
 import mongoose from "mongoose";
 
@@ -15,16 +16,13 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
 const PORT = process.env.PORT || 8080;
 
 /** GET */
-app.get("/api/v1/products", (req, res) => {
-  res.status(200).send(data.products);
-});
 
-app.get("/api/v1/products/:id", (req, res) => {
-  const product = data.products.find((item) => item._id === req.params.id);
+// app.get("/api/v1/products/:id", (req, res) => {
+//   const product = data.products.find((item) => item._id === req.params.id);
 
-  res.statusMessage = "Product Not Found";
-  product ? res.status(200).send(product) : res.status(404).send();
-});
+//   res.statusMessage = "Product Not Found";
+//   product ? res.status(200).send(product) : res.status(404).send();
+// });
 
 app.get("/", (req, res) => {
   res.send(`Server is ready and running on port: ${PORT} `);
@@ -37,6 +35,9 @@ app.use((err, req, res, next) => {
 
 // User Router
 app.use("/api/v1/users", userRouter);
+
+// Product Router
+app.use("/api/v1/products", productRouter);
 
 app.listen(PORT, () => {
   console.log("Served at http://localhost:8080");
