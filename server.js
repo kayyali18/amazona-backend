@@ -1,11 +1,14 @@
 import express from "express";
-
+import dotenv from "dotenv";
 import userRouter from "./routers/user.js";
 import productRouter from "./routers/product.js";
-import data from "./data.js";
 import mongoose from "mongoose";
 
+dotenv.config();
+
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // Setup mongodb_url
 mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
   useNewUrlParser: true,
@@ -14,15 +17,6 @@ mongoose.connect(process.env.MONGODB_URL || "mongodb://localhost/amazona", {
 });
 
 const PORT = process.env.PORT || 8080;
-
-/** GET */
-
-// app.get("/api/v1/products/:id", (req, res) => {
-//   const product = data.products.find((item) => item._id === req.params.id);
-
-//   res.statusMessage = "Product Not Found";
-//   product ? res.status(200).send(product) : res.status(404).send();
-// });
 
 app.get("/", (req, res) => {
   res.send(`Server is ready and running on port: ${PORT} `);
